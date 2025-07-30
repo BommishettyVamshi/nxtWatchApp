@@ -77,17 +77,5 @@
       "Firefox ESR",
       "not ie < 11"
     ]
-  },
-  "description": "In this project, let's build **Nxt Watch** by applying the concepts we have learned till now.",
-  "main": "craco.config.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BommishettyVamshi/nxtWatchApp.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BommishettyVamshi/nxtWatchApp/issues"
-  },
-  "homepage": "https://github.com/BommishettyVamshi/nxtWatchApp#readme"
+  }
 }
