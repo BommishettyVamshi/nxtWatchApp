@@ -7,6 +7,7 @@ import SavedVideos from './pages/SavedVideos'
 import VideoItemDetails from './pages/VideoItemDetails'
 import NotFound from './pages/NotFound'
 import NxtWatchContextProvider from './context/NxtWatchContext'
+import ProtectedRoute from './components/ProtectedRoute'
 
 import './App.css'
 
@@ -15,11 +16,11 @@ const App = () => (
   <NxtWatchContextProvider>
     <Switch>
       <Route exact path="/login" component={Login} />
-      <Route exact path="/" component={Home} />
-      <Route exact path="/videos/:id" component={VideoItemDetails} />
-      <Route exact path="/trending" component={Trending} />
-      <Route exact path="/gaming" component={Gaming} />
-      <Route exact path="/saved-videos" component={SavedVideos} />
+      <ProtectedRoute exact path="/" component={Home} />
+      <ProtectedRoute exact path="/videos/:id" component={VideoItemDetails} />
+      <ProtectedRoute exact path="/trending" component={Trending} />
+      <ProtectedRoute exact path="/gaming" component={Gaming} />
+      <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
       <Route exact path="/not-found" component={NotFound} />
       <Redirect to="/not-found" />
     </Switch>
