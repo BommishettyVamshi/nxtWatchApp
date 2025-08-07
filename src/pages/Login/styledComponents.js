@@ -59,7 +59,7 @@ export const InputAndLabelContainer = styled.div`
 `
 export const InputField = styled.input`
   width: 100%;
-  padding: 20px;
+  padding: 15px;
   color: ${props => (props.isThemeDark ? '#ffffff' : '#7e858e')};
   border: 1px solid #94a3b8;
   border-radius: 5px;
@@ -113,7 +113,7 @@ export const CustomButton = styled.button`
   border-radius: 10px;
   background-color: #3b82f6;
   color: #ffffff;
-  padding: 20px;
+  padding: 15px;
   width: 100%;
   font-weight: bold;
   cursor: pointer;

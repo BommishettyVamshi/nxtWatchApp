@@ -8,6 +8,7 @@ export const apiStatusConstants = {
   success: 'SUCCESS',
   failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
+  noVideos: 'NO_VIDEOS',
 }
 
 export const baseApiUrl = 'https://apis.ccbp.in'
