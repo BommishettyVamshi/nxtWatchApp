@@ -7,7 +7,7 @@ export const HeaderMainContainer = styled.div`
   align-items: center;
   width: 100%;
   padding: 10px 40px 10px 40px;
-  background-color: ${props => (props.isThemeDark ? '#0f0f0f' : '#f9f9f9')};
+  background-color: ${props => (props.isThemeDark ? '#181818' : '#f9f9f9')};
 `
 
 export const WebsiteLogo = styled.img`

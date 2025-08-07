@@ -10,7 +10,7 @@ export const SubContainer = styled.div`
 
 export const HomeVideosContainer = styled.div`
   height: 100%;
-  background-color: ${props => (props.isThemeDark ? '#181818' : '#f1f5f9')};
+  background-color: ${props => (props.isThemeDark ? '#0f0f0f' : '#f1f5f9')};
   display: flex;
   flex-direction: column;
   @media screen and (max-width: 768px) {
@@ -163,4 +163,59 @@ export const LoaderContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`
+
+export const NoSearchResultsContainer = styled.div`
+  flex-grow: 1;
+  align-self: strech;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => (props.isThemeDark ? '#0f0f0f' : '#f1f5f9')};
+  padding: 50px;
+`
+
+export const NoSearchResultsCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`
+
+export const NoSearchImage = styled.img`
+  @media screen and (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 50%;
+    width: 50%;
+  }
+`
+
+export const NoSearchHeadin = styled.h1`
+  font-family: Roboto;
+  color: ${props => (props.isThemeDark ? ' #f9f9f9' : '#0f0f0f')};
+  font-weight: bold;
+  text-align: center;
+`
+
+export const NoSearchPara = styled.p`
+  font-family: Roboto;
+  color: ${props => (props.isThemeDark ? ' #475569' : '#475569')};
+  line-height: 0;
+`
+
+export const RetryButton = styled.button`
+  background-color: ${props => (props.isThemeDark ? '#4f46e5' : ' #3b82f6')};
+  color: #ffffff;
+  padding: 15px 20px 15px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
 `

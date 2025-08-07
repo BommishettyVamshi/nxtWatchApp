@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const SiderBarMainContainer = styled.div`
   width: 20%;
-  background-color: ${props => (props.isThemeDark ? '#0f0f0f' : '#f9f9f9')};
+  background-color: ${props => (props.isThemeDark ? '#181818' : '#f9f9f9')};
   display: flex;
   flex-direction: column;
   padding-top: 30px;
@@ -28,7 +28,7 @@ export const SiderBarMenuLink = styled(Link)`
   align-self: flex-start;
   background-color: ${props => {
     if (props.isThemeDark) {
-      return props.isactive ? '#212121' : 'transparent'
+      return props.isactive ? '#383838' : 'transparent'
     }
     return props.isactive ? '#f1f5f9' : 'transparent'
   }};
@@ -100,4 +100,5 @@ export const ContactImage = styled.img`
 export const ContactDescription = styled.p`
   color: ${props => (props.isThemeDark ? '#ffffff' : '#000000')};
   font-size: 20px;
+  font-family: Roboto;
 `

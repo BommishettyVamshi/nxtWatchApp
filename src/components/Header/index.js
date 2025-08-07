@@ -204,7 +204,7 @@ class Header extends Component {
                     {close => (
                       <HeaderPopupContainer isThemeDark={isThemeDark}>
                         <PopupPara isThemeDark={isThemeDark}>
-                          Are you sure you want logut?
+                          Are you sure you want to logut?
                         </PopupPara>
                         <CustomButtonContainer>
                           <CustomButton

@@ -24,6 +24,12 @@ import {
   HrBar,
   SearchIconCard,
   LoaderContainer,
+  NoSearchResultsCard,
+  NoSearchHeadin,
+  NoSearchPara,
+  NoSearchImage,
+  RetryButton,
+  NoSearchResultsContainer,
 } from './styledComponents'
 import {getVideos} from '../../services/apiServices'
 import {apiStatusConstants} from '../../utils/constants'
@@ -93,6 +99,19 @@ class Home extends Component {
     }))
   }
 
+  retry = () => {
+    this.setState(
+      {
+        apiStatus: apiStatusConstants.initial,
+        searchInput: '',
+        videos: [],
+        errorMsg: '',
+        isBannerClosed: true,
+      },
+      this.getHomeVideos,
+    )
+  }
+
   render() {
     const {
       width,
@@ -144,41 +163,109 @@ class Home extends Component {
             </BannerContainer>
           )
 
-          const renderSuccessView = () => (
-            <HomeVideosContainer isThemeDark={isThemeDark}>
-              {isBannerClosed && renderBannerView()}
-              <VideosContainer>
-                {apiStatus === apiStatusConstants.inProgress && renderLoader()}
-                <SearchInputContainer>
-                  <SearchBar
-                    type="text"
-                    value={searchInput}
-                    placeholder="Search"
-                    onChange={this.changeSearchInput}
-                    isThemeDark={isThemeDark}
-                  />
-                  <HrBar />
-                  <SearchIconCard type="button" onClick={this.getSearchResults}>
-                    <BsSearch style={{fontSize: '20px', color: '#606060'}} />
-                  </SearchIconCard>
-                </SearchInputContainer>
-                <VideosCardList>
-                  {apiStatus === apiStatusConstants.inProgress &&
-                    renderLoader()}
-                  {videos.map(each => (
-                    <VideoCard videosList={each} key={each.id} />
-                  ))}
-                </VideosCardList>
-              </VideosContainer>
-            </HomeVideosContainer>
+          const renderNoSearchResultsView = () => (
+            <NoSearchResultsContainer isThemeDark={isThemeDark}>
+              <NoSearchResultsCard>
+                <NoSearchImage
+                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+                  alt="no videos"
+                />
+                <NoSearchHeadin isThemeDark={isThemeDark}>
+                  {errorMsg}
+                </NoSearchHeadin>
+                <NoSearchPara isThemeDark={isThemeDark}>
+                  Try different key words or remove search filter
+                </NoSearchPara>
+                <RetryButton isThemeDark={isThemeDark} onClick={this.retry}>
+                  Retry
+                </RetryButton>
+              </NoSearchResultsCard>
+            </NoSearchResultsContainer>
           )
+
+          const renderFailureView = () => (
+            <NoSearchResultsContainer isThemeDark={isThemeDark}>
+              <NoSearchResultsCard>
+                <NoSearchImage
+                  src={
+                    isThemeDark
+                      ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+                      : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+                  }
+                  alt="failure"
+                />
+                <NoSearchHeadin isThemeDark={isThemeDark}>
+                  {errorMsg}
+                </NoSearchHeadin>
+                <NoSearchPara isThemeDark={isThemeDark}>
+                  We are havin some trouble to complete your request.
+                </NoSearchPara>
+                <NoSearchPara isThemeDark={isThemeDark}>
+                  Please try again.
+                </NoSearchPara>
+                <RetryButton isThemeDark={isThemeDark} onClick={this.retry}>
+                  Retry
+                </RetryButton>
+              </NoSearchResultsCard>
+            </NoSearchResultsContainer>
+          )
+
+          const renderSuccessView = () => (
+            <VideosCardList>
+              {apiStatus === apiStatusConstants.inProgress && renderLoader()}
+
+              {videos.map(each => (
+                <VideoCard videosList={each} key={each.id} />
+              ))}
+            </VideosCardList>
+          )
+
+          const renderHomeView = () => {
+            switch (apiStatus) {
+              case apiStatusConstants.success:
+                return renderSuccessView()
+              case apiStatusConstants.noVideos:
+                return renderNoSearchResultsView()
+              case apiStatusConstants.failure:
+                return renderFailureView()
+              case apiStatusConstants.inProgress:
+                return renderLoader()
+              default:
+                return null
+            }
+          }
 
           return (
             <MainContainer data-testid="home">
               <Header />
               <SubContainer windowWidth={width}>
                 {width >= 768 && <NavigationSideBar />}
-                {renderSuccessView()}
+                <HomeVideosContainer isThemeDark={isThemeDark}>
+                  {isBannerClosed && renderBannerView()}
+                  <VideosContainer>
+                    {apiStatus === apiStatusConstants.inProgress &&
+                      renderLoader()}
+                    <SearchInputContainer>
+                      <SearchBar
+                        type="text"
+                        value={searchInput}
+                        placeholder="Search"
+                        onChange={this.changeSearchInput}
+                        isThemeDark={isThemeDark}
+                      />
+                      <HrBar />
+                      <SearchIconCard
+                        type="button"
+                        onClick={this.getSearchResults}
+                      >
+                        <BsSearch
+                          style={{fontSize: '20px', color: '#606060'}}
+                        />
+                      </SearchIconCard>
+                    </SearchInputContainer>
+                    {renderHomeView()}
+                  </VideosContainer>
+                </HomeVideosContainer>
               </SubContainer>
             </MainContainer>
           )
